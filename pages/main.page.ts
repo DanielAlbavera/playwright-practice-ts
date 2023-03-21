@@ -71,6 +71,28 @@ export class MainPage extends BasePage  {
         this.forgotPassword = page.getByText('Forgot Password');
         this.formAuthenticationLink = page.getByText('Form Authentication');
         this.framesLink = page.getByText('Frames').first();
+        this.geolocationLink = page.getByText('Geolocation');
+        this.horizontalSliderLink = page.getByText('Horizontal Slider');
+        this.hoversLink = page.getByText('Hovers');
+        this.infiniteScrollLink = page.getByText('Infinite Scroll');        
+        this.inputsLink = page.getByText('Inputs');
+        this.jQueryUIMenusLink = page.getByText('JQuery UI Menus');
+        this.javaScriptAlertsLink = page.getByText('JavaScript Alerts');
+        this.jsOnloadEventErrorLink = page.getByText('JavaScript onload event error');
+        this.keyPressLink = page.getByText('Key Presses');
+        this.largeDeepDOMLink = page.getByText('Large & Deep DOM');
+        this.multipleWindowsLink = page.getByText('Multiple Windows');
+        this.nestedFramesLink = page.getByText('Nested Frames');
+        this.notificationMessageLink = page.getByText('Notification Messages');
+        this.redirectLink = page.getByText('Redirect Link');
+        this.secureFileDownloadLink = page.getByText('Secure File Download');
+        this.shadowDOMLink = page.getByText('Shadow DOM');
+        this.shiftingContentLink = page.getByText('Shifting Content');
+        this.slowResourcesLink = page.getByText('Slow Resources');
+        this.sortableDataTablesLink = page.getByText('Sortable Data Tables');
+        this.statusCodesLink = page.getByText('Status Codes');
+        this.typosLink = page.getByText('Typos');
+        this.wysiwygEditorLink = page.getByText('WYSIWYG Editor');
     }
 
 

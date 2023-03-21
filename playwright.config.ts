@@ -12,6 +12,7 @@ import { URL } from './data/constants';
  */
 export default defineConfig({
   testDir: './tests',
+  snapshotDir: './screenshots',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {

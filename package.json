@@ -1,11 +1,16 @@
 {
   "name": "playwright-practice-ts",
   "version": "1.0.0",
-  "description": "",
+  "description": "Automated Framework with Playwright and TypeScript",
   "main": "index.js",
-  "scripts": {},
-  "keywords": [],
-  "author": "",
+  "scripts": {
+    "test" : "npx playwright test",
+    "test:trace" : "npx playwright test --trace on",
+    "test:visual" : "npx playwright test visual-comparison.spec",
+    "update:spanshots" : "npx playwright test visual-comparison.spec --update-snapshots"
+  },
+  "keywords": ["Automation testing", "Playwright", "e2e"],
+  "author": "Daniel Albavera",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.31.0"

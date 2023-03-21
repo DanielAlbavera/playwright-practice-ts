@@ -20,4 +20,11 @@ export class FileHandler {
         });
     }
 
+    static async removeAllFiles(path: string): Promise<void> {
+        const files = await this.readFiles(path);
+        for (let file of files) {
+            await this.removeFile(`${path}/${file}`);
+        }
+    }
+
 }
