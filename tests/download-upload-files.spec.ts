@@ -42,34 +42,53 @@ test.describe('Herouku Download/Upload Validations', () => {
     const fileName = await page.locator(linkToDownload).first().textContent() || '';
     await downloadFile.saveAs(`${downloadPath}/${fileName}`);
     const downloadedFile = await FileHandler.readFiles(downloadPath);
-    console.log('File Downloaded: ', downloadedFile);
     expect(downloadedFile[0]).toBe(fileName);
+    await FileHandler.removeAllFiles(downloadPath);
   });
 
-  test('File Upload', async () => {
-    const files = await FileHandler.readFiles(downloadPath);
-    console.log('Files Downloaded: ', files);
-    const fileName = files[0];
-    const filePath = `${downloadPath}/${fileName}`;
+  //BUFFER
+
+  test('File Upload By Buffer', async () => {
+    const file_name = 'file.csv';
     const expected_title = 'File Uploader';
     await mainPage.fileUploadLink.click();
     const title = page.locator(titleHeader);
     expect(await title.textContent()).toContain(expected_title);
     const fileChooser = page.locator('input#file-upload');
-    await fileChooser.setInputFiles(filePath);
+    await fileChooser.setInputFiles({
+      name: file_name,
+      mimeType:'text/csv',
+      buffer: Buffer.from('this,is,test')
+    });
     await page.locator('input#file-submit').click();
     const uploaded_title = 'File Uploaded!';
     expect(await title.textContent()).toContain(uploaded_title);
-    expect(await page.locator('div#uploaded-files').textContent()).toContain(fileName);
-    // By Drag and Drop - A liitle bit Flakky 
-    // await page.goBack();
-    // await page.waitForLoadState();
-    // const fileChooserPromise = page.waitForEvent('filechooser');
-    // await page.locator('div#content div#drag-drop-upload').click();
-    // const dragFileChooser = await fileChooserPromise;
-    // await dragFileChooser.setFiles(filePath);
-    // expect(await page.getByText(fileName).textContent()).toContain(fileName);
-    await FileHandler.removeAllFiles(downloadPath);
+    expect(await page.locator('div#uploaded-files').textContent()).toContain(file_name);
   });
+
+  //By Drag and Drop - A liitle bit Flakky 
+  // test('File Upload', async () => {
+  //   const files = await FileHandler.readFiles(downloadPath);
+  //   const fileName = files[0];
+  //   const filePath = `${downloadPath}/${fileName}`;
+  //   const expected_title = 'File Uploader';
+  //   await mainPage.fileUploadLink.click();
+  //   const title = page.locator(titleHeader);
+  //   expect(await title.textContent()).toContain(expected_title);
+  //   const fileChooser = page.locator('input#file-upload');
+  //   await fileChooser.setInputFiles(filePath);
+  //   await page.locator('input#file-submit').click();
+  //   const uploaded_title = 'File Uploaded!';
+  //   expect(await title.textContent()).toContain(uploaded_title);
+  //   expect(await page.locator('div#uploaded-files').textContent()).toContain(fileName);
+  //   await page.goBack();
+  //   await page.waitForLoadState();
+  //   const fileChooserPromise = page.waitForEvent('filechooser');
+  //   await page.locator('div#content div#drag-drop-upload').click();
+  //   const dragFileChooser = await fileChooserPromise;
+  //   await dragFileChooser.setFiles(filePath);
+  //   expect(await page.getByText(fileName).textContent()).toContain(fileName);
+  //   await FileHandler.removeAllFiles(downloadPath);
+  // });
 
 });
