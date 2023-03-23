@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test" : "npx playwright test",
+    "test:line" : "npx playwright test --reporter=line",
     "test:trace" : "npx playwright test --trace on",
     "test:visual" : "npx playwright test visual-comparison.spec",
     "update:spanshots" : "npx playwright test visual-comparison.spec --update-snapshots"
